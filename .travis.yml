@@ -20,4 +20,17 @@ after_success:
   - docker push hsworkplace11/multi-nginx
   - docker push hsworkplace11/multi-server
   - docker push hsworkplace11/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ca-central-1"
+  app: "multi-docker"
+  env: "Multidocker-env"
+  bucket_name: "elasticbeanstalk-ca-central-1-806334773511"
+  bucket_path: "docker-multi"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: 
+    secure: $AWS_SECRET_KEY
   
